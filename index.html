@@ -76,6 +76,11 @@
       #quickLinks .btn { margin-top: 6px; }
       #quickLinks .links a { display: block; margin: 6px 0; text-align: left; }
 
+      /* Show toggle (appears when hidden) */
+      #showQuickLinksToggle {
+        position: fixed; left: 8px; top: 8px; z-index: 10000; display: none;
+      }
+
       /* List view */
       .list-view .col-sm-6 { width: 100%; }
       .list-view .panel { text-align: left; }
@@ -113,6 +118,7 @@
       </div>
       <button id="hideQuickLinks" class="btn btn-xs btn-default">Hide</button>
     </div>
+    <button id="showQuickLinksToggle" class="btn btn-xs btn-default">Show Quick Links</button>
 
     <!-- NAV -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -265,12 +271,273 @@
     <footer>
       <small>Last updated: <span id="lastUpdated"></span></small>
       <hr/>
-      <!-- Yuck E. Sneeze Meme Zone -->
+      <!-- Yuck E. Sneeze Meme Zone (SVG generated in browser) -->
       <div id="yuck-zone" style="margin:20px auto;max-width:950px;text-align:center;">
         <h3>😂 Yuck E. Sneeze Meme Zone</h3>
+
         <div id="yuck-memes" style="display:flex;flex-wrap:wrap;justify-content:center;gap:15px;margin-top:15px;">
-          <!-- If these files are missing, onerror will swap in a placeholder -->
-          <img src="images/yuck1.png" alt="Yuck Meme 1" style="max-width:200px;border:2px solid var(--border);border-radius:8px;"
-               onerror="this.onerror=null;this.src='https://placehold.co/200x200?text=Yuck+Meme+1';">
-          <img src="images/yuck2.png" alt="Yuck Meme 2" style="max-width:200px;border:2px solid var(--border);border-radius:8px;"
-               oner
+          <!-- SVG memes get injected here -->
+        </div>
+
+        <p id="yuck-text" style="margin-top:15px;font-style:italic;"></p>
+
+        <div style="margin-top:10px;">
+          <button id="regenMemes" class="btn btn-default btn-sm">↻ New Memes</button>
+          <button id="hideMemes" class="btn btn-danger btn-sm">Hide Memes</button>
+          <button id="showMemes" class="btn btn-success btn-sm" style="display:none;">Show Memes</button>
+        </div>
+
+        <h5 style="margin-top:20px;">🤧 This site was proudly sponsored by <strong>Yuck E. Sneeze</strong> — spreading memes since forever.</h5>
+      </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./js/popup.js"></script>
+
+    <!-- Popup (fixed structure so JS works) -->
+    <div class="popup" style="display:none;">
+      <div class="popup-inner">
+        <button class="close-btn" aria-label="Close">&times;</button>
+        <h4>Welcome!</h4>
+        <p>Enjoy Henry's School Spot 🎒</p>
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <button id="toTop" class="btn btn-primary btn-sm">Back to Top ↑</button>
+
+    <script>
+      (function () {
+        // ===== Popup =====
+        var popup = document.querySelector('.popup');
+        var closeBtn = document.querySelector('.popup .close-btn');
+        var flagKey = 'popup-displayed';
+        if (popup && closeBtn) {
+          if (!localStorage.getItem(flagKey)) {
+            popup.style.display = 'block';
+            localStorage.setItem(flagKey, '1');
+          }
+          closeBtn.addEventListener('click', function () {
+            popup.style.display = 'none';
+          });
+        }
+
+        // ===== Theme toggle (persist) =====
+        var themeBtn = document.getElementById('themeToggle');
+        var root = document.documentElement;
+        var THEME_KEY = 'hs_theme';
+        function setTheme(mode){
+          root.setAttribute('data-theme', mode);
+          themeBtn.textContent = (mode === 'light') ? '☀️' : '🌙';
+          localStorage.setItem(THEME_KEY, mode);
+        }
+        setTheme(localStorage.getItem(THEME_KEY) || 'dark');
+        themeBtn.addEventListener('click', function(){
+          setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+        });
+
+        // Keyboard shortcut: t to toggle theme, / to focus search
+        document.addEventListener('keydown', function(e){
+          if (e.key === 't' && !/input|textarea/i.test(document.activeElement.tagName)) {
+            e.preventDefault(); themeBtn.click();
+          }
+          if (e.key === '/' && !/input|textarea/i.test(document.activeElement.tagName)) {
+            e.preventDefault(); document.getElementById('siteSearch').focus();
+          }
+        });
+
+        // ===== Search filter for videos (left as-is) =====
+        var searchInput = document.getElementById('siteSearch');
+        var cards = Array.prototype.slice.call(document.querySelectorAll('#videos > div.col-sm-6'));
+        function applyFilter(q){
+          var query = (q || '').trim().toLowerCase();
+          cards.forEach(function(card){
+            var title = (card.getAttribute('data-title') || '').toLowerCase();
+            card.style.display = title.indexOf(query) !== -1 ? '' : 'none';
+          });
+        }
+        // Uncomment if you want live filtering:
+        // searchInput.addEventListener('input', function(){ applyFilter(this.value); });
+
+        // ===== Hide Quick Links (with persistence) =====
+        var hideBtn = document.getElementById('hideQuickLinks');
+        var ql = document.getElementById('quickLinks');
+        var showToggle = document.getElementById('showQuickLinksToggle');
+        var QL_KEY = 'hs_quicklinks_hidden';
+
+        function applyQLHidden() {
+          var hidden = localStorage.getItem(QL_KEY) === '1';
+          if (hidden) {
+            if (ql) ql.style.display = 'none';
+            if (showToggle) showToggle.style.display = '';
+          } else {
+            if (ql) ql.style.display = '';
+            if (showToggle) showToggle.style.display = 'none';
+          }
+        }
+        applyQLHidden();
+
+        if (hideBtn) hideBtn.addEventListener('click', function(){
+          localStorage.setItem(QL_KEY, '1'); applyQLHidden();
+        });
+        if (showToggle) showToggle.addEventListener('click', function(){
+          localStorage.removeItem(QL_KEY); applyQLHidden();
+        });
+
+        // ===== Back to Top (optional wiring) =====
+        var toTop = document.getElementById('toTop');
+        window.addEventListener('scroll', function(){
+          toTop.style.display = window.scrollY > 200 ? '' : 'none';
+        });
+        toTop.addEventListener('click', function(){
+          window.scrollTo({top:0, behavior:'smooth'});
+        });
+
+        // ===== Last updated =====
+        var lastUpdated = document.getElementById('lastUpdated');
+        if (lastUpdated) lastUpdated.textContent = new Date().toLocaleString();
+
+        // ===== Yuck E. Sneeze: LIVE SVG MEMES =====
+        var memeQuotes = [
+          "I didn’t sneeze on you, I blessed you with flavor.",
+          "Keep calm and pass the tissues.",
+          "One sneeze a day keeps the boredom away.",
+          "Don’t blame me, blame the pepperoni.",
+          "Caution: may sneeze without warning.",
+          "I put the 'ew' in 'Yuck' and the 'ease' in 'Sneeze'.",
+          "99% no drama, 100% sneeze power."
+        ];
+        var captionsTop = [
+          "Certified Achoo Moment",
+          "Emergency Tissue Protocol",
+          "Wind advisory in aisle 3",
+          "Sneeze first, ask later"
+        ];
+        var emojis = ["🤧","😷","🤪","🫠","😮‍💨","😵‍💫"];
+
+        function rand(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+        function makeSVG(width, height) {
+          var svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+          svg.setAttribute('width', width);
+          svg.setAttribute('height', height);
+          svg.setAttribute('viewBox', '0 0 '+width+' '+height);
+          svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+          return svg;
+        }
+        function rect(svg, attrs){
+          var el = document.createElementNS(svg.namespaceURI,'rect');
+          Object.keys(attrs).forEach(k=>el.setAttribute(k, attrs[k]));
+          svg.appendChild(el); return el;
+        }
+        function text(svg, str, attrs){
+          var el = document.createElementNS(svg.namespaceURI,'text');
+          el.textContent = str;
+          Object.keys(attrs).forEach(k=>el.setAttribute(k, attrs[k]));
+          svg.appendChild(el); return el;
+        }
+        function gradLinear(svg, id, stops, x1='0%', y1='0%', x2='100%', y2='100%'){
+          var defs = svg.querySelector('defs') || svg.appendChild(document.createElementNS(svg.namespaceURI,'defs'));
+          var lg = document.createElementNS(svg.namespaceURI,'linearGradient');
+          lg.setAttribute('id', id);
+          lg.setAttribute('x1', x1); lg.setAttribute('y1', y1);
+          lg.setAttribute('x2', x2); lg.setAttribute('y2', y2);
+          stops.forEach(function(s){
+            var st = document.createElementNS(svg.namespaceURI,'stop');
+            st.setAttribute('offset', s.offset);
+            st.setAttribute('stop-color', s.color);
+            defs.appendChild(lg);
+            lg.appendChild(st);
+          });
+          return 'url(#'+id+')';
+        }
+
+        function buildMeme(title, topLine, bottomLine, emojiChar){
+          var W=360, H=360;
+          var svg = makeSVG(W,H);
+
+          // background gradient
+          var fillGrad = gradLinear(svg, 'g'+Math.random().toString(36).slice(2),
+            [{offset:'0%', color:'#2b2b2b'}, {offset:'100%', color:'#111'}]);
+
+          rect(svg, {x:0,y:0,width:W,height:H,rx:18,fill:fillGrad});
+
+          // ribbon
+          rect(svg,{x:16,y:16,width:96,height:26,rx:6,fill:'#4ea3ff'});
+          text(svg,'ACHOO!',{x:24,y:35,fill:'#0b1220','font-size':'14','font-family':'Arial, Helvetica, sans-serif','font-weight':'700'});
+
+          // title + emoji
+          text(svg,title,{x:16,y:70,fill:'#fff','font-size':'22','font-family':'Arial, Helvetica, sans-serif','font-weight':'700'});
+          text(svg,emojiChar,{x:300,y:76,'text-anchor':'start','dominant-baseline':'middle','font-size':'54','font-family':'Segoe UI Emoji'});
+
+          // card box
+          rect(svg,{x:16,y:86,width:W-32,height:220,rx:12,fill:'#1e1e1e',stroke:'#3b3b3b','stroke-width':'2'});
+
+          // top line
+          text(svg,topLine,{x:28,y:126,fill:'#9ad1ff','font-size':'16','font-family':'Arial, Helvetica, sans-serif'});
+
+          // center brand
+          text(svg,'Yuck E. Sneeze',{x:28,y:176,fill:'#fff','font-size':'24','font-family':'Arial, Helvetica, sans-serif','font-weight':'700'});
+
+          // bottom line (wrapped-ish: truncate if too long)
+          var bl = bottomLine.length>40 ? bottomLine.slice(0,37)+'...' : bottomLine;
+          text(svg,bl,{x:28,y:212,fill:'#ccc','font-size':'13','font-family':'Arial, Helvetica, sans-serif'});
+
+          // footer tag
+          text(svg,'#Meme',{x:28,y:286,fill:'#888','font-size':'12','font-family':'Arial, Helvetica, sans-serif'});
+          return svg;
+        }
+
+        function renderMemes(){
+          var zone = document.getElementById('yuck-memes');
+          if (!zone) return;
+          zone.innerHTML = ''; // clear
+          var picks = [
+            { title:'Certified Achoo', top: rand(captionsTop), bottom: rand(memeQuotes), emoji: rand(emojis) },
+            { title:'Sneeze Season', top: rand(captionsTop), bottom: rand(memeQuotes), emoji: rand(emojis) },
+            { title:'Tissue Tech', top: rand(captionsTop), bottom: rand(memeQuotes), emoji: rand(emojis) }
+          ];
+          picks.forEach(function(p){
+            var wrap = document.createElement('div');
+            wrap.style.border = '2px solid var(--border)';
+            wrap.style.borderRadius = '8px';
+            wrap.style.overflow = 'hidden';
+            wrap.appendChild(buildMeme(p.title, p.top, p.bottom, p.emoji));
+            zone.appendChild(wrap);
+          });
+
+          // random funny line below the grid
+          var yt = document.getElementById('yuck-text');
+          if (yt) yt.textContent = rand(memeQuotes);
+        }
+
+        // initial render + regen button
+        renderMemes();
+        var regen = document.getElementById('regenMemes');
+        if (regen) regen.addEventListener('click', renderMemes);
+
+        // hide/show memes (persist)
+        var hideBtn = document.getElementById('hideMemes');
+        var showBtn = document.getElementById('showMemes');
+        var zoneWrap = document.getElementById('yuck-zone');
+        var MEME_KEY = 'hs_memes_hidden';
+        function applyMemeHidden(){
+          var hidden = localStorage.getItem(MEME_KEY)==='1';
+          document.getElementById('yuck-memes').style.display = hidden ? 'none' : '';
+          document.getElementById('yuck-text').style.display = hidden ? 'none' : '';
+          hideBtn.style.display = hidden ? 'none' : '';
+          showBtn.style.display = hidden ? '' : 'none';
+        }
+        if (hideBtn && showBtn) {
+          hideBtn.addEventListener('click', function(){ localStorage.setItem(MEME_KEY,'1'); applyMemeHidden(); });
+          showBtn.addEventListener('click', function(){ localStorage.removeItem(MEME_KEY); applyMemeHidden(); });
+          applyMemeHidden();
+        }
+      })();
+    </script>
+  </body>
+</html>
