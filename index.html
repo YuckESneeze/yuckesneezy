@@ -11,118 +11,195 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" />
     <style>
       body {
-        font-family: Roboto;
+        font-family: Roboto, sans-serif;
         color: #ffffff;
         text-align: center;
         background-color: #1c1c1c;
         cursor: url('images/pointerblue1.png'), none;
         padding-top: 9.5%;
       }
-
-      a:hover,
-      button:hover {
-        cursor: url('images/handblue120.png'), pointer;
-      }
+      a:hover, button:hover { cursor: url('images/handblue120.png'), pointer; }
+      /* simple helpers */
+      .section-text { margin: 20px 0 30px; font-size: 18px; }
+      .section-title { margin: 40px 0 20px; font-weight: 700; }
+      .video-grid { margin-top: 15px; }
+      .panel { background: #222; border-color: #333; }
+      .panel-heading { background: #2b2b2b !important; border-color: #333 !important; }
     </style>
-    <!-- Google Analytics -->
+
+    <!-- Google Analytics (replace GA_MEASUREMENT_ID if needed) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      gtag('config', 'GA_MEASUREMENT_ID');
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date()); gtag('config', 'GA_MEASUREMENT_ID');
     </script>
     <!-- Google Tag Manager -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KXRHPNW89S"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      gtag('config', 'G-KXRHPNW89S');
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date()); gtag('config', 'G-KXRHPNW89S');
     </script>
   </head>
   <body>
-    <nav class="navbar navbar-inverse">
+    <!-- NAV -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a href="https://github.com/SchoolIzBoring">
-            <img src="./images/uw.png" alt="Unblocked" width="50" height="50" class="logo" />
+          <a class="navbar-brand" href="index.html" style="padding:5px 15px;">
+            <img src="./images/uw.png" alt="Unlocked" width="40" height="40" class="logo" />
           </a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navCollapse">
+            <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+          </button>
         </div>
-        <div class="navitems">
+        <div class="collapse navbar-collapse" id="navCollapse">
           <ul class="nav navbar-nav">
-            <li class="active">
-              <a href="index.html">Home</a>
-            </li>
-            <li>
-              <a href="gamesites.html">Gamesites</a>
-            </li>
-            <li>
-              <a href="proxies.html">Proxies</a>
-            </li>
-            <li>
-              <a href="other.html">Other</a>
-            </li>
-            <li>
-              <a href="tools.html">Tools</a>
-            </li>
-            <li>
-              <a href="settings.html">Settings</a>
-            </li>
+            <li class="active"><a href="index.html">Home</a></li>
+            <li><a href="gamesites.html">Gamesites</a></li>
+            <li><a href="proxies.html">Proxies</a></li>
+            <li><a href="other.html">Other</a></li>
+            <li><a href="tools.html">Tools</a></li>
+            <li><a href="settings.html">Settings</a></li>
+            <!-- New anchor to the section below -->
+            <li><a href="#my-favorite-game">My Favorite Game</a></li>
           </ul>
         </div>
       </div>
     </nav>
-    <div id="header">
+
+    <!-- HEADER -->
+    <div id="header" style="margin-top:10px;">
       <img src="logo.png" alt="ttt" />
     </div>
-<script src="https://apps.elfsight.com/p/platform.js" defer></script>
-<div class="elfsight-app-613f4807-153e-4854-b903-f439ed856224"></div>
+
+    <!-- Elfsight -->
+    <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+    <div class="elfsight-app-613f4807-153e-4854-b903-f439ed856224"></div>
+
+    <!-- WELCOME -->
     <div class="container">
-      <div></div>
       <p class="section-text">Welcome to v2!</p>
     </div>
+
+    <!-- =========================
+         MY FAVORITE GAME (Shucks / Irida)
+         ========================= -->
+    <div id="my-favorite-game" class="container">
+      <h2 class="section-title">My Favorite Game — Shucks (Irida)</h2>
+
+      <div class="row video-grid">
+        <div class="col-sm-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">Cutscene / Clip #1</div>
+            <div class="panel-body">
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item"
+                        src="https://www.youtube-nocookie.com/embed/znwoJhPyh78"
+                        title="Shucks / Irida — Video 1"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+              </div>
+              <p style="margin-top:10px;">
+                <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=znwoJhPyh78">Open on YouTube</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">Cutscene / Clip #2</div>
+            <div class="panel-body">
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item
+                        " src="https://www.youtube-nocookie.com/embed/gqm21paVBTI"
+                        title="Shucks / Irida — Video 2"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+              </div>
+              <p style="margin-top:10px;">
+                <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=gqm21paVBTI">Open on YouTube</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">Cutscene / Clip #3</div>
+            <div class="panel-body">
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item"
+                        src="https://www.youtube-nocookie.com/embed/YcgcvAEm_z4"
+                        title="Shucks / Irida — Video 3"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+              </div>
+              <p style="margin-top:10px;">
+                <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=YcgcvAEm_z4">Open on YouTube</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">Song / Radio Start</div>
+            <div class="panel-body">
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item"
+                        src="https://www.youtube-nocookie.com/embed/BmReKipobQw"
+                        title="Shucks — Song"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+              </div>
+              <p style="margin-top:10px;">
+                <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=BmReKipobQw&list=RDBmReKipobQw&start_radio=1">Open on YouTube</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- /MY FAVORITE GAME -->
+
+    <!-- SCRIPTS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/keen-slider"></script>
     <script src="./js/common.js"></script>
     <script src="./js/index.js"></script>
     <script src="./js/popup.js"></script>
-    <div class="popup">
+
+    <!-- Popup (fixed structure so JS works) -->
+    <div class="popup" style="display:none;">
+      <div class="popup-inner">
+        <button class="close-btn" aria-label="Close">&times;</button>
+        <h4>Welcome!</h4>
+        <p>Enjoy Henry's School Spot 🎒</p>
       </div>
     </div>
+
     <script>
-const popup = document.querySelector('.popup');
-const closeBtn = document.querySelector('.close-btn');
-const flagKey = 'popup-displayed';
+      (function () {
+        var popup = document.querySelector('.popup');
+        var closeBtn = document.querySelector('.popup .close-btn');
+        var flagKey = 'popup-displayed';
 
-// Check if the flag is set
-if (!localStorage.getItem(flagKey)) {
-  displayPopup();
-}
-
-// Display the popup
-function displayPopup() {
-  popup.style.display = 'block';
-}
-
-// Close the popup
-function closePopup() {
-  popup.style.display = 'none';
-  localStorage.removeItem(flagKey);
-}
-
-// Close the popup when the close button is clicked
-closeBtn.addEventListener('click', closePopup);
-
+        if (popup && closeBtn) {
+          // Show once per load (remove flag to always show once)
+          if (!localStorage.getItem(flagKey)) {
+            popup.style.display = 'block';
+            localStorage.setItem(flagKey, '1');
+          }
+          closeBtn.addEventListener('click', function () {
+            popup.style.display = 'none';
+          });
+        }
+      })();
     </script>
   </body>
 </html>
-
-
