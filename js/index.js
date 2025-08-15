@@ -40,7 +40,8 @@ const slider = new KeenSlider('.keen-slider', {
 });
 
 $(document).ready(function() {
-  var message = "I have decided to stop producing and updating my website to work on a new gamesite. If you still want to keep it up and running, please fill out this form: <a href='https://docs.google.com/forms/d/e/.../viewform'>Link</a>";
+  var message = "
+      >Link</a>";
   $("<div>").html(message).dialog({
     title: "Important Notice",
     modal: true,
@@ -52,4 +53,5 @@ $(document).ready(function() {
     }
   });
 });
+
 
