@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,21 +10,78 @@
     <link rel="stylesheet" href="./css/popup.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" />
     <style>
+      /* THEME VARS */
+      :root {
+        --bg: #1c1c1c;
+        --panel: #222;
+        --panel-2: #2b2b2b;
+        --border: #333;
+        --text: #fff;
+        --accent: #4ea3ff;
+      }
+      [data-theme="light"] {
+        --bg: #f5f7fb;
+        --panel: #fff;
+        --panel-2: #f0f0f0;
+        --border: #dcdcdc;
+        --text: #111;
+        --accent: #1f6feb;
+      }
+
       body {
         font-family: Roboto, sans-serif;
-        color: #ffffff;
+        color: var(--text);
         text-align: center;
-        background-color: #1c1c1c;
-        cursor: url('images/pointerblue1.png'), none;
+        background-color: var(--bg);
+        cursor: url('images/pointerblue1.png'), default;
         padding-top: 9.5%;
       }
+      a, a:visited { color: var(--accent); }
       a:hover, button:hover { cursor: url('images/handblue120.png'), pointer; }
-      /* simple helpers */
       .section-text { margin: 20px 0 30px; font-size: 18px; }
       .section-title { margin: 40px 0 20px; font-weight: 700; }
+      .panel { background: var(--panel); border-color: var(--border); }
+      .panel-heading { background: var(--panel-2) !important; border-color: var(--border) !important; }
       .video-grid { margin-top: 15px; }
-      .panel { background: #222; border-color: #333; }
-      .panel-heading { background: #2b2b2b !important; border-color: #333 !important; }
+
+      /* Navbar tweaks */
+      .navbar-inverse { border-color: var(--border); }
+      .navbar-inverse .navbar-nav>li>a { color: #ddd; }
+      .navbar-inverse .navbar-nav>li>a:hover { color: #fff; }
+
+      /* Right-side tools */
+      .navbar-form { margin-right: 10px; }
+      #themeToggle { margin: 8px 10px; }
+
+      /* View toggle */
+      .view-toggle { margin: 10px 0 0; text-align: right; }
+      .view-toggle .btn { margin-left: 5px; }
+
+      /* Back to top */
+      #toTop {
+        position: fixed; right: 15px; bottom: 20px;
+        display: none; z-index: 9999;
+      }
+
+      /* Quick Links drawer */
+      #quickLinks {
+        position: fixed; left: 0; top: 50%; transform: translateY(-50%);
+        background: var(--panel); color: var(--text);
+        border: 1px solid var(--border);
+        border-left: none;
+        padding: 10px; border-radius: 0 8px 8px 0;
+        z-index: 9998; width: 220px;
+      }
+      #quickLinks h5 { margin: 6px 0 10px; }
+      #quickLinks .btn { margin-top: 6px; }
+      #quickLinks .links a { display: block; margin: 6px 0; text-align: left; }
+
+      /* List view */
+      .list-view .col-sm-6 { width: 100%; }
+      .list-view .panel { text-align: left; }
+
+      /* Footer */
+      footer { margin: 40px 0 20px; color: #aaa; }
     </style>
 
     <!-- Google Analytics (replace GA_MEASUREMENT_ID if needed) -->
@@ -43,6 +100,20 @@
     </script>
   </head>
   <body>
+    <!-- QUICK LINKS DRAWER -->
+    <div id="quickLinks" class="hidden-xs">
+      <h5>Quick Links</h5>
+      <div class="links">
+        <a href="#my-favorite-game">🎮 My Favorite Game</a>
+        <a href="gamesites.html">🕹️ Game Sites</a>
+        <a href="proxies.html">🛡️ Proxies</a>
+        <a href="tools.html">🧰 Tools</a>
+        <a href="other.html">📦 Other</a>
+        <a href="https://ww20.0123movie.net/" target="_blank" rel="noopener noreferrer">🎬 Movies</a>
+      </div>
+      <button id="hideQuickLinks" class="btn btn-xs btn-default">Hide</button>
+    </div>
+
     <!-- NAV -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
@@ -54,6 +125,7 @@
             <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
           </button>
         </div>
+
         <div class="collapse navbar-collapse" id="navCollapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="index.html">Home</a></li>
@@ -62,11 +134,17 @@
             <li><a href="other.html">Other</a></li>
             <li><a href="tools.html">Tools</a></li>
             <li><a href="settings.html">Settings</a></li>
-            <!-- New anchor to the section below -->
             <li><a href="#my-favorite-game">My Favorite Game</a></li>
-            <!-- Movies tab -->
             <li><a href="https://ww20.0123movie.net/" target="_blank" rel="noopener noreferrer">Movies</a></li>
           </ul>
+
+          <!-- Right side: search + theme -->
+          <form class="navbar-form navbar-right" onsubmit="return false;">
+            <div class="form-group">
+              <input id="siteSearch" type="text" class="form-control" placeholder="Search videos ( / )" />
+            </div>
+          </form>
+          <button id="themeToggle" class="btn btn-default navbar-btn navbar-right" title="Toggle theme (t)">🌙/☀️</button>
         </div>
       </div>
     </nav>
@@ -89,89 +167,124 @@
          MY FAVORITE GAME (Shucks / Irida)
          ========================= -->
     <div id="my-favorite-game" class="container">
-      <h2 class="section-title">My Favorite Game — Shucks (Irida)</h2>
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="section-title">My Favorite Game — Shucks (Irida)</h2>
+          <div class="view-toggle">
+            <span>View:</span>
+            <button id="gridView" class="btn btn-xs btn-primary">Grid</button>
+            <button id="listView" class="btn btn-xs btn-default">List</button>
+          </div>
+        </div>
+      </div>
 
-      <div class="row video-grid">
-        <div class="col-sm-6">
+      <div id="videos" class="row video-grid">
+        <!-- 1 -->
+        <div class="col-sm-6" data-title="cutscene clip 1 shucks irida">
           <div class="panel panel-default">
             <div class="panel-heading">Cutscene / Clip #1</div>
             <div class="panel-body">
               <div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item"
                         src="https://www.youtube-nocookie.com/embed/znwoJhPyh78"
+                        loading="lazy"
                         title="Shucks / Irida — Video 1"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen></iframe>
               </div>
               <p style="margin-top:10px;">
-                <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=znwoJhPyh78">Open on YouTube</a>
+                <a class="yt-link" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=znwoJhPyh78">Open on YouTube</a>
+                <button class="btn btn-xs btn-default copy-link" data-url="https://www.youtube.com/watch?v=znwoJhPyh78">Copy link</button>
               </p>
             </div>
           </div>
         </div>
 
-        <div class="col-sm-6">
+        <!-- 2 -->
+        <div class="col-sm-6" data-title="cutscene clip 2 shucks irida">
           <div class="panel panel-default">
             <div class="panel-heading">Cutscene / Clip #2</div>
             <div class="panel-body">
               <div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item"
                         src="https://www.youtube-nocookie.com/embed/gqm21paVBTI"
+                        loading="lazy"
                         title="Shucks / Irida — Video 2"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen></iframe>
               </div>
               <p style="margin-top:10px;">
-                <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=gqm21paVBTI">Open on YouTube</a>
+                <a class="yt-link" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=gqm21paVBTI">Open on YouTube</a>
+                <button class="btn btn-xs btn-default copy-link" data-url="https://www.youtube.com/watch?v=gqm21paVBTI">Copy link</button>
               </p>
             </div>
           </div>
         </div>
 
-        <div class="col-sm-6">
+        <!-- 3 -->
+        <div class="col-sm-6" data-title="cutscene clip 3 shucks irida">
           <div class="panel panel-default">
             <div class="panel-heading">Cutscene / Clip #3</div>
             <div class="panel-body">
               <div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item"
                         src="https://www.youtube-nocookie.com/embed/YcgcvAEm_z4"
+                        loading="lazy"
                         title="Shucks / Irida — Video 3"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen></iframe>
               </div>
               <p style="margin-top:10px;">
-                <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=YcgcvAEm_z4">Open on YouTube</a>
+                <a class="yt-link" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=YcgcvAEm_z4">Open on YouTube</a>
+                <button class="btn btn-xs btn-default copy-link" data-url="https://www.youtube.com/watch?v=YcgcvAEm_z4">Copy link</button>
               </p>
             </div>
           </div>
         </div>
 
-        <div class="col-sm-6">
+        <!-- 4 -->
+        <div class="col-sm-6" data-title="song radio shucks">
           <div class="panel panel-default">
             <div class="panel-heading">Song / Radio Start</div>
             <div class="panel-body">
               <div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item"
                         src="https://www.youtube-nocookie.com/embed/BmReKipobQw"
+                        loading="lazy"
                         title="Shucks — Song"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen></iframe>
               </div>
               <p style="margin-top:10px;">
-                <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=BmReKipobQw&list=RDBmReKipobQw&start_radio=1">Open on YouTube</a>
+                <a class="yt-link" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=BmReKipobQw&list=RDBmReKipobQw&start_radio=1">Open on YouTube</a>
+                <button class="btn btn-xs btn-default copy-link" data-url="https://www.youtube.com/watch?v=BmReKipobQw&list=RDBmReKipobQw&start_radio=1">Copy link</button>
               </p>
             </div>
           </div>
         </div>
       </div>
-
     </div>
     <!-- /MY FAVORITE GAME -->
+
+    <footer>
+      <small>Last updated: <span id="lastUpdated"></span></small>
+      <hr/>
+      <!-- Yuck E. Sneeze Meme Zone -->
+      <div id="yuck-zone" style="margin:20px auto;max-width:950px;text-align:center;">
+        <h3>😂 Yuck E. Sneeze Meme Zone</h3>
+        <div id="yuck-memes" style="display:flex;flex-wrap:wrap;justify-content:center;gap:15px;margin-top:15px;">
+          <img src="images/yuck1.png" alt="Yuck Meme 1" style="max-width:200px;border:2px solid var(--border);border-radius:8px;">
+          <img src="images/yuck2.png" alt="Yuck Meme 2" style="max-width:200px;border:2px solid var(--border);border-radius:8px;">
+          <img src="images/yuck3.png" alt="Yuck Meme 3" style="max-width:200px;border:2px solid var(--border);border-radius:8px;">
+        </div>
+        <p id="yuck-text" style="margin-top:15px;font-style:italic;"></p>
+        <h5 style="margin-top:20px;">🤧 This site was proudly sponsored by <strong>Yuck E. Sneeze</strong> — spreading memes since forever.</h5>
+      </div>
+    </footer>
 
     <!-- SCRIPTS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="https://unpkg.com/keen-slider"></script>
     <script src="./js/common.js"></script>
     <script src="./js/index.js"></script>
     <script src="./js/popup.js"></script>
@@ -182,26 +295,3 @@
         <button class="close-btn" aria-label="Close">&times;</button>
         <h4>Welcome!</h4>
         <p>Enjoy Henry's School Spot 🎒</p>
-      </div>
-    </div>
-
-    <script>
-      (function () {
-        var popup = document.querySelector('.popup');
-        var closeBtn = document.querySelector('.popup .close-btn');
-        var flagKey = 'popup-displayed';
-
-        if (popup && closeBtn) {
-          // Show once per load (remove flag to always show once)
-          if (!localStorage.getItem(flagKey)) {
-            popup.style.display = 'block';
-            localStorage.setItem(flagKey, '1');
-          }
-          closeBtn.addEventListener('click', function () {
-            popup.style.display = 'none';
-          });
-        }
-      })();
-    </script>
-  </body>
-</html>
