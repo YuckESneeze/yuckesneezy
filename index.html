@@ -13,14 +13,14 @@
          SHUCKS THEME VARIABLES
          ========================= */
       :root {
-        --bg: #0b0f1a;          /* deep night */
-        --panel: #111827;       /* slate */
-        --panel-2: #1f2937;     /* darker slate */
-        --border: #2b3b52;      /* cool border */
-        --text: #e6e6f0;        /* soft white */
+        --bg: #0b0f1a;
+        --panel: #111827;
+        --panel-2: #1f2937;
+        --border: #2b3b52;
+        --text: #e6e6f0;
         --muted: #9aa8c7;
-        --accent: #a78bfa;      /* violet (shell glint) */
-        --accent-2: #22d3ee;    /* teal highlight */
+        --accent: #a78bfa;
+        --accent-2: #22d3ee;
         --glow: 0 0 0 1px rgba(167,139,250,.25), 0 10px 30px -10px rgba(34,211,238,.25);
       }
       [data-theme="light"] {
@@ -38,9 +38,7 @@
       /* =========================
          BASE
          ========================= */
-      html, body {
-        height: 100%;
-      }
+      html, body { height: 100%; }
       body {
         font-family: Roboto, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif;
         color: var(--text);
@@ -55,115 +53,58 @@
       a, a:visited { color: var(--accent-2); }
       a:hover, button:hover { cursor: url('images/handblue120.png'), pointer; }
 
-      /* General helpers */
       .section-text { margin: 20px 0 30px; font-size: 18px; color: var(--muted); }
-      .section-title {
-        margin: 40px 0 20px; font-weight: 700;
-        letter-spacing: .3px;
-        text-shadow: 0 1px 0 rgba(0,0,0,.3);
-      }
-      .panel {
-        background: var(--panel);
-        border-color: var(--border);
-        box-shadow: var(--glow);
-        border-radius: 12px;
-        overflow: hidden;
-      }
-      .panel-heading {
-        background: linear-gradient(180deg, var(--panel-2), var(--panel));
-        border-color: var(--border) !important;
-        color: #dfe3f5 !important;
-      }
+      .section-title { margin: 40px 0 20px; font-weight: 700; letter-spacing: .3px; text-shadow: 0 1px 0 rgba(0,0,0,.3); }
+      .panel { background: var(--panel); border-color: var(--border); box-shadow: var(--glow); border-radius: 12px; overflow: hidden; }
+      .panel-heading { background: linear-gradient(180deg, var(--panel-2), var(--panel)); border-color: var(--border) !important; color: #dfe3f5 !important; }
       .video-grid { margin-top: 15px; }
 
-      /* =========================
-         NAVBAR
-         ========================= */
-      .navbar-inverse {
-        border-color: transparent;
-        background: rgba(10,14,24,.85);
-        backdrop-filter: blur(6px);
-      }
+      /* NAVBAR */
+      .navbar-inverse { border-color: transparent; background: rgba(10,14,24,.85); backdrop-filter: blur(6px); }
       .navbar-inverse .navbar-nav>li>a { color: #dbe4ff; }
       .navbar-inverse .navbar-nav>li>a:hover { color: #ffffff; }
-      .navbar-brand .logo {
-        filter: drop-shadow(0 4px 10px rgba(34,211,238,.25));
-      }
+      .navbar-brand .logo { filter: drop-shadow(0 4px 10px rgba(34,211,238,.25)); }
       .badge-shucks {
         background: linear-gradient(135deg, var(--accent), var(--accent-2));
-        color: #0b0f1a;
-        padding: 3px 8px; border-radius: 999px; font-weight: 700; font-size: 11px;
-        margin-left: 6px;
+        color: #0b0f1a; padding: 3px 8px; border-radius: 999px; font-weight: 700; font-size: 11px; margin-left: 6px;
       }
-
-      /* Right-side tools */
       .navbar-form { margin-right: 10px; }
       #themeToggle { margin: 8px 10px; }
 
-      /* =========================
-         SHUCKS HERO
-         ========================= */
+      /* HERO */
       .shucks-hero {
-        position: relative;
-        margin: 10px auto 0;
-        max-width: 1080px;
-        border-radius: 18px;
-        padding: 22px 18px;
+        position: relative; margin: 10px auto 0; max-width: 1080px; border-radius: 18px; padding: 22px 18px;
         background:
           radial-gradient(600px 280px at 10% 0%, rgba(167,139,250,.18), transparent 60%),
           radial-gradient(600px 280px at 90% 0%, rgba(34,211,238,.15), transparent 60%),
           linear-gradient(180deg, rgba(17,24,39,.95), rgba(17,24,39,.85));
-        box-shadow: var(--glow);
-        border: 1px solid var(--border);
-        overflow: hidden;
+        box-shadow: var(--glow); border: 1px solid var(--border); overflow: hidden;
       }
-      .shucks-hero h1 {
-        margin: 0;
-        font-size: 26px;
-        font-weight: 800;
-        letter-spacing: 0.4px;
-      }
-      .shucks-hero p {
-        margin: 6px 0 0;
-        color: var(--muted);
-      }
+      .shucks-hero h1 { margin: 0; font-size: 26px; font-weight: 800; letter-spacing: 0.4px; }
+      .shucks-hero p { margin: 6px 0 0; color: var(--muted); }
       .hero-wave {
         position: absolute; left: -10%; right: -10%; bottom: -36px; height: 120px;
         background:
           radial-gradient(120px 50px at 10% 100%, rgba(167,139,250,.25), transparent 60%),
           radial-gradient(180px 60px at 60% 100%, rgba(34,211,238,.25), transparent 60%);
-        filter: blur(24px);
-        opacity: .7;
-        pointer-events: none;
+        filter: blur(24px); opacity: .7; pointer-events: none;
       }
-
-      /* View toggle */
-      .view-toggle { margin: 10px 0 0; text-align: right; }
-      .view-toggle .btn { margin-left: 5px; }
 
       /* Back to top */
-      #toTop {
-        position: fixed; right: 15px; bottom: 20px;
-        display: none; z-index: 9999;
-      }
+      #toTop { position: fixed; right: 15px; bottom: 20px; display: none; z-index: 9999; }
 
       /* Quick Links drawer */
       #quickLinks {
         position: fixed; left: 0; top: 50%; transform: translateY(-50%);
         background: var(--panel); color: var(--text);
-        border: 1px solid var(--border);
-        border-left: none;
-        padding: 10px; border-radius: 0 10px 10px 0;
-        box-shadow: var(--glow);
-        z-index: 9998; width: 220px;
-        text-align: left;
+        border: 1px solid var(--border); border-left: none;
+        padding: 10px; border-radius: 0 10px 10px 0; box-shadow: var(--glow);
+        z-index: 9998; width: 220px; text-align: left;
       }
       #quickLinks h5 { margin: 6px 0 10px; color: #dfe3f5; }
       #quickLinks .btn { margin-top: 6px; }
       #quickLinks .links a { display: block; margin: 6px 0; }
-      #showQuickLinksToggle {
-        position: fixed; left: 8px; top: 8px; z-index: 10000; display: none;
-      }
+      #showQuickLinksToggle { position: fixed; left: 8px; top: 8px; z-index: 10000; display: none; }
 
       /* List view */
       .list-view .col-sm-6 { width: 100%; }
@@ -176,18 +117,10 @@
 
     <!-- Google Analytics (replace GA_MEASUREMENT_ID if needed) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){ dataLayer.push(arguments); }
-      gtag('js', new Date()); gtag('config', 'GA_MEASUREMENT_ID');
-    </script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);} gtag('js',new Date()); gtag('config','GA_MEASUREMENT_ID');</script>
     <!-- Google Tag Manager -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KXRHPNW89S"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){ dataLayer.push(arguments); }
-      gtag('js', new Date()); gtag('config', 'G-KXRHPNW89S');
-    </script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);} gtag('js',new Date()); gtag('config','G-KXRHPNW89S');</script>
   </head>
   <body>
     <!-- QUICK LINKS DRAWER -->
@@ -254,6 +187,32 @@
     <!-- WELCOME -->
     <div class="container">
       <p class="section-text">Welcome! if you encounter any bugs tell Kai Or Henry about it!!</p>
+    </div>
+
+    <!-- =========================
+         CUSTOM LYRICS VIDEO (EMBED)
+         ========================= -->
+    <div id="custom-video" class="container" style="margin-top:30px;">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="section-title">🎵 Friday Night Funkin' — Custom Lyrics</h2>
+          <div class="panel panel-default">
+            <div class="panel-heading">Exclusive Clip (MP4)</div>
+            <div class="panel-body">
+              <video controls style="width:100%;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.6);">
+                <!-- If the file is in the SAME folder as index.html, keep this: -->
+                <source src="ssstwitter.com_1755355072368.mp4" type="video/mp4" />
+                <!-- If you move it into /videos/, change to: videos/ssstwitter.com_1755355072368.mp4 -->
+                Your browser does not support the video tag.
+              </video>
+              <p style="margin-top:10px;">
+                Want more? Play tons of FNF mods (many with custom lyrics) at
+                <a href="https://www.fnfgo.com" target="_blank" rel="noopener noreferrer">FNFGO.com</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- =========================
@@ -363,4 +322,165 @@
         <h3>😂 Yuck E. Sneeze Meme Zone</h3>
 
         <div id="yuck-memes" style="display:flex;flex-wrap:wrap;justify-content:center;gap:15px;margin-top:15px;">
+          <!-- SVG memes injected by JS -->
+        </div>
 
+        <p id="yuck-text" style="margin-top:15px;font-style:italic;"></p>
+
+        <div style="margin-top:10px;">
+          <button id="regenMemes" class="btn btn-default btn-sm">↻ New Memes</button>
+          <button id="hideMemes" class="btn btn-danger btn-sm">Hide Memes</button>
+          <button id="showMemes" class="btn btn-success btn-sm" style="display:none;">Show Memes</button>
+        </div>
+
+        <h5 style="margin-top:20px;">🤧 This site was proudly sponsored by <strong>Yuck E. Sneeze</strong> — spreading memes since forever.</h5>
+      </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- Popup (fixed structure so JS works) -->
+    <div class="popup" style="display:none;">
+      <div class="popup-inner">
+        <button class="close-btn" aria-label="Close">&times;</button>
+        <h4>Welcome!</h4>
+        <p>Enjoy Henry's School Spot 🎒</p>
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <button id="toTop" class="btn btn-primary btn-sm">Back to Top ↑</button>
+
+    <script>
+      (function () {
+        /* ===== Popup ===== */
+        var popup = document.querySelector('.popup');
+        var closeBtn = document.querySelector('.popup .close-btn');
+        var flagKey = 'popup-displayed';
+        if (popup && closeBtn) {
+          if (!localStorage.getItem(flagKey)) { popup.style.display = 'block'; localStorage.setItem(flagKey, '1'); }
+          closeBtn.addEventListener('click', function () { popup.style.display = 'none'; });
+        }
+
+        /* ===== Theme toggle (persist) ===== */
+        var themeBtn = document.getElementById('themeToggle');
+        var root = document.documentElement;
+        var THEME_KEY = 'hs_theme';
+        function setTheme(mode){
+          root.setAttribute('data-theme', mode);
+          themeBtn.textContent = (mode === 'light') ? '☀️' : '🌙';
+          localStorage.setItem(THEME_KEY, mode);
+        }
+        setTheme(localStorage.getItem(THEME_KEY) || 'dark');
+        themeBtn.addEventListener('click', function(){
+          setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+        });
+
+        /* Keyboard shortcuts: t to toggle theme, / to focus search */
+        document.addEventListener('keydown', function(e){
+          if (e.key === 't' && !/input|textarea/i.test(document.activeElement.tagName)) { e.preventDefault(); themeBtn.click(); }
+          if (e.key === '/' && !/input|textarea/i.test(document.activeElement.tagName)) { e.preventDefault(); document.getElementById('siteSearch').focus(); }
+        });
+
+        /* ===== Hide Quick Links (persist) ===== */
+        var hideBtn = document.getElementById('hideQuickLinks');
+        var ql = document.getElementById('quickLinks');
+        var showToggle = document.getElementById('showQuickLinksToggle');
+        var QL_KEY = 'hs_quicklinks_hidden';
+        function applyQLHidden() {
+          var hidden = localStorage.getItem(QL_KEY) === '1';
+          if (hidden) { if (ql) ql.style.display = 'none'; if (showToggle) showToggle.style.display = ''; }
+          else { if (ql) ql.style.display = ''; if (showToggle) showToggle.style.display = 'none'; }
+        }
+        applyQLHidden();
+        if (hideBtn) hideBtn.addEventListener('click', function(){ localStorage.setItem(QL_KEY,'1'); applyQLHidden(); });
+        if (showToggle) showToggle.addEventListener('click', function(){ localStorage.removeItem(QL_KEY); applyQLHidden(); });
+
+        /* ===== Back to Top ===== */
+        var toTop = document.getElementById('toTop');
+        window.addEventListener('scroll', function(){ toTop.style.display = window.scrollY > 200 ? '' : 'none'; });
+        toTop.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+
+        /* ===== Last updated ===== */
+        var lastUpdated = document.getElementById('lastUpdated');
+        if (lastUpdated) lastUpdated.textContent = new Date().toLocaleString();
+
+        /* ===== Yuck E. Sneeze: LIVE SVG MEMES ===== */
+        var memeQuotes = [
+          "I didn’t sneeze on you, I blessed you with flavor.",
+          "Keep calm and pass the tissues.",
+          "One sneeze a day keeps the boredom away.",
+          "Don’t blame me, blame the pepperoni.",
+          "Caution: may sneeze without warning.",
+          "I put the 'ew' in 'Yuck' and the 'ease' in 'Sneeze'.",
+          "99% no drama, 100% sneeze power."
+        ];
+        var captionsTop = [
+          "Certified Achoo Moment",
+          "Emergency Tissue Protocol",
+          "Wind advisory in aisle 3",
+          "Sneeze first, ask later"
+        ];
+        var emojis = ["🤧","😷","🤪","🫠","😮‍💨","😵‍💫"];
+
+        function rand(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+        function makeSVG(w,h){ var s=document.createElementNS('http://www.w3.org/2000/svg','svg'); s.setAttribute('width',w); s.setAttribute('height',h); s.setAttribute('viewBox','0 0 '+w+' '+h); return s; }
+        function rect(svg,a){ var el=document.createElementNS(svg.namespaceURI,'rect'); Object.keys(a).forEach(k=>el.setAttribute(k,a[k])); svg.appendChild(el); return el; }
+        function text(svg,t,a){ var el=document.createElementNS(svg.namespaceURI,'text'); el.textContent=t; Object.keys(a).forEach(k=>el.setAttribute(k,a[k])); svg.appendChild(el); return el; }
+        function gradLinear(svg,id,stops,x1='0%',y1='0%',x2='100%',y2='100%'){
+          var defs=svg.querySelector('defs')||svg.appendChild(document.createElementNS(svg.namespaceURI,'defs'));
+          var lg=document.createElementNS(svg.namespaceURI,'linearGradient'); lg.setAttribute('id',id);
+          lg.setAttribute('x1',x1); lg.setAttribute('y1',y1); lg.setAttribute('x2',x2); lg.setAttribute('y2',y2);
+          defs.appendChild(lg);
+          stops.forEach(function(s){ var st=document.createElementNS(svg.namespaceURI,'stop'); st.setAttribute('offset',s.offset); st.setAttribute('stop-color',s.color); lg.appendChild(st); });
+          return 'url(#'+id+')';
+        }
+        function buildMeme(title, topLine, bottomLine, emojiChar){
+          var W=360,H=360, svg=makeSVG(W,H);
+          var fillGrad=gradLinear(svg,'g'+Math.random().toString(36).slice(2),[{offset:'0%',color:'#1a1f2e'},{offset:'100%',color:'#0e1422'}]);
+          rect(svg,{x:0,y:0,width:W,height:H,rx:18,fill:fillGrad});
+          rect(svg,{x:16,y:16,width:96,height:26,rx:6,fill:'#a78bfa'});
+          text(svg,'ACHOO!',{x:24,y:35,fill:'#0b0f1a','font-size':'14','font-family':'Arial','font-weight':'700'});
+          text(svg,title,{x:16,y:70,fill:'#eaf0ff','font-size':'22','font-family':'Arial','font-weight':'700'});
+          text(svg,emojiChar,{x:300,y:76,'text-anchor':'start','dominant-baseline':'middle','font-size':'54','font-family':'Segoe UI Emoji'});
+          rect(svg,{x:16,y:86,width:W-32,height:220,rx:12,fill:'#101827',stroke:'#223049','stroke-width':'2'});
+          text(svg,topLine,{x:28,y:126,fill:'#22d3ee','font-size':'16','font-family':'Arial'});
+          text(svg,'Yuck E. Sneeze',{x:28,y:176,fill:'#ffffff','font-size':'24','font-family':'Arial','font-weight':'700'});
+          var bl=bottomLine.length>40?bottomLine.slice(0,37)+'...':bottomLine;
+          text(svg,bl,{x:28,y:212,fill:'#c7d2fe','font-size':'13','font-family':'Arial'});
+          text(svg,'#Shucks',{x:28,y:286,fill:'#8ea2d9','font-size':'12','font-family':'Arial'});
+          return svg;
+        }
+        function renderMemes(){
+          var zone=document.getElementById('yuck-memes'); if(!zone) return; zone.innerHTML='';
+          [{t:'Certified Achoo'},{t:'Sneeze Season'},{t:'Tissue Tech'}].forEach(function(p){
+            var wrap=document.createElement('div');
+            wrap.style.border='1px solid var(--border)'; wrap.style.borderRadius='12px'; wrap.style.overflow='hidden'; wrap.style.boxShadow='var(--glow)';
+            wrap.appendChild(buildMeme(p.t, rand(captionsTop), rand(memeQuotes), rand(emojis)));
+            zone.appendChild(wrap);
+          });
+          var yt=document.getElementById('yuck-text'); if(yt) yt.textContent=rand(memeQuotes);
+        }
+        renderMemes();
+        var regen=document.getElementById('regenMemes'); if(regen) regen.addEventListener('click', renderMemes);
+
+        /* hide/show memes (persist) */
+        var hideBtn=document.getElementById('hideMemes'), showBtn=document.getElementById('showMemes'), MEME_KEY='hs_memes_hidden';
+        function applyMemeHidden(){
+          var h=localStorage.getItem(MEME_KEY)==='1';
+          document.getElementById('yuck-memes').style.display=h?'none':'';
+          document.getElementById('yuck-text').style.display=h?'none':'';
+          hideBtn.style.display=h?'none':'';
+          showBtn.style.display=h?'':'none';
+        }
+        if (hideBtn && showBtn){
+          hideBtn.addEventListener('click', function(){ localStorage.setItem(MEME_KEY,'1'); applyMemeHidden(); });
+          showBtn.addEventListener('click', function(){ localStorage.removeItem(MEME_KEY); applyMemeHidden(); });
+          applyMemeHidden();
+        }
+      })();
+    </script>
+  </body>
+</html>
