@@ -3,98 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Henry's School Spot | Gamesites (FNF Mods)</title>
+    <title>Henry's School Spot | Gamesites</title>
     <link rel="icon" type="image/png" href="images/uw.png" sizes="16x16" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="./css/gamesites.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" />
-
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){ dataLayer.push(arguments); }
-      gtag('js', new Date());
-      gtag('config', 'GA_MEASUREMENT_ID');
-    </script>
-    <!-- Google Tag Manager -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KXRHPNW89S"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){ dataLayer.push(arguments); }
-      gtag('js', new Date()); gtag('config', 'G-KXRHPNW89S');
-    </script>
-
     <style>
-      :root {
-        --bg: #1c1c1c;
-        --panel: #20232a;
-        --border: #333;
-        --text: #ffffff;
-        --accent: #4ea3ff;
+      :root { --bg:#1c1c1c; --panel:#20232a; --border:#333; --text:#fff; --accent:#4ea3ff; }
+      body{
+        font-family:Roboto, sans-serif; font-size:13.3333px; color:var(--text); text-align:center;
+        background-color:var(--bg); cursor:url('images/pointerblue1.png'), default; padding-top:9.5%;
       }
-      body {
-        font-family: Roboto, sans-serif;
-        font-size: 13.3333px;
-        color: var(--text);
-        text-align: center;
-        background-color: var(--bg);
-        cursor: url('images/pointerblue1.png'), default;
-        padding-top: 9.5%;
-      }
-      a, a:visited { color: var(--accent); }
-      a:hover, button:hover { cursor: url('images/handblue120.png'), pointer; }
-
-      .hero {
-        max-width: 980px;
-        margin: 10px auto 24px;
-        padding: 18px;
-        background: var(--panel);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-      }
-      .hero h2 { margin: 8px 0 6px; font-weight: 700; }
-      .hero p { opacity: .85; margin: 0; }
-
-      .site-card {
-        max-width: 980px;
-        margin: 0 auto 24px;
-        text-align: left;
-        background: var(--panel);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        overflow: hidden;
-      }
-      .site-card .header {
-        padding: 14px 16px;
-        background: #262a33;
-        border-bottom: 1px solid var(--border);
-        font-weight: 700;
-      }
-      .site-card .body {
-        padding: 16px;
-      }
-      .btn-big {
-        display: inline-block;
-        padding: 14px 18px;
-        font-size: 16px;
-        border-radius: 10px;
-        border: 1px solid var(--border);
-        background: #2a2f3a;
-        color: #eaf2ff;
-        width: 100%;
-        text-align: center;
-      }
-      .btn-big img { vertical-align: middle; margin-right: 8px; }
-      .note { margin-top: 10px; opacity: .8; font-size: 12px; }
-
-      /* grid helper if you add more links later */
-      .row-gap { margin-top: 16px; }
+      a, a:visited{color:var(--accent)}
+      a:hover,button:hover{cursor:url('images/handblue120.png'),pointer}
+      #header img{max-width:180px}
+      .websites-container{max-width:980px;margin:0 auto}
+      .site-card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:18px;text-align:left}
+      .site-card h3{margin-top:0}
+      .btn-lg.btn-block{margin-bottom:12px}
     </style>
   </head>
-
   <body>
-    <!-- NAV -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -118,72 +47,141 @@
       </div>
     </nav>
 
-    <!-- HEADER -->
     <div id="header" style="margin-top:10px;">
       <img src="logo.png" alt="Unblocked" />
     </div>
 
     <p>Number of users: <span id="connection-counter">1000</span></p>
 
-    <!-- HERO -->
-    <div class="hero">
-      <h2>Friday Night Funkin’ — Mods Hub</h2>
-      <p>Jump straight into hundreds of FNF mods in one place.</p>
-    </div>
+    <div class="container">
+      <div class="websites-container">
 
-    <!-- MAIN CARD: FNF GO -->
-    <div class="site-card">
-      <div class="header">
-        Featured: FNF Mods — FNF Go
-      </div>
-      <div class="body">
-        <div class="row row-gap">
-          <div class="col-sm-12">
-            <a class="btn btn-big" target="_blank" rel="noopener noreferrer" href="https://www.fnfgo.com/">
-              <img src="./images/computer.png" alt="icon" width="20" height="20" />
-              Open FNF Go (All Mods)
+        <!-- Featured FNF Mods -->
+        <div class="site-card">
+          <h3>🎵 FNF Mods — <a href="https://www.fnfgo.com" target="_blank" rel="noopener">fnfgo.com</a></h3>
+          <p>Play Friday Night Funkin’ mods in your browser — many with <b>custom lyrics</b>. If a mod lags, close other tabs or lower graphics.</p>
+          <a class="btn btn-default btn-lg btn-block" role="button" target="_blank" rel="noopener" href="https://www.fnfgo.com">Open FNFGO</a>
+        </div>
+
+        <!-- Original list restored -->
+        <div class="row">
+          <div class="col-md-4">
+            <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://3kh0.github.io">
+              <img src="./images/3kh0.png" width="16" height="16" />&nbsp;3kh0
             </a>
-            <div class="note">
-              Tip: If a mod lags, try closing other tabs or lowering in-game graphics settings.
-            </div>
+          </div>
+          <div class="col-md-4">
+            <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://ellieeet123.github.io">
+              <img src="./images/pringles.png" width="16" height="16" />&nbsp;Pringles
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://games.unblockify.gq">
+              <img src="./images/unblockify_games.png" width="16" height="16" />&nbsp;Unblockify Games
+            </a>
           </div>
         </div>
 
-        <!-- Optional quick jumps you can keep or delete -->
-        <div class="row row-gap">
-          <div class="col-sm-4">
-            <a class="btn btn-default btn-lg btn-block" target="_blank" rel="noopener noreferrer" href="https://www.fnfgo.com/">
-              🔥 Trending Mods
+        <div class="row">
+          <div class="col-md-4">
+            <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://lioxryt.github.io/">
+              <img src="./images/lioxryt.png" width="16" height="16" />&nbsp;Lioxryt Games
             </a>
           </div>
-          <div class="col-sm-4">
-            <a class="btn btn-default btn-lg btn-block" target="_blank" rel="noopener noreferrer" href="https://www.fnfgo.com/">
-              🆕 Newest
+          <div class="col-md-4">
+            <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://outred.github.io">
+              <img src="./images/outred.png" width="16" height="16" />&nbsp;OutRed Games
             </a>
           </div>
-          <div class="col-sm-4">
-            <a class="btn btn-default btn-lg btn-block" target="_blank" rel="noopener noreferrer" href="https://www.fnfgo.com/">
-              🎵 Music Packs
+          <div class="col-md-4">
+            <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://gba.js.org">
+              <img src="./images/gba.png" width="16" height="16" />&nbsp;Gba Online
             </a>
           </div>
         </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://zatoga.vercel.app">
+              <img src="./images/zatoga.png" width="16" height="16" />&nbsp;Zatoga
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://binbashbanana.github.io/webretro">
+              <img src="./images/wr.png" width="16" height="16" />&nbsp;Web Retro
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://archive.org/details/internetarcade">
+              <img src="./images/archive.png" width="16" height="16" />&nbsp;Internet Arcade
+            </a>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://593d4d43-3073-45d0-86e2-0443d15adf21.id.repl.co/">
+              <img src="./images/sh.png" width="16" height="16" />&nbsp;School Heaven
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://mathgames66.github.io">
+              <img src="./images/mg.jpg" width="16" height="16" />&nbsp;MathGames66
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://abc6782.github.io/core-html/games.html">
+              <img src="./images/abc.png" width="16" height="16" />&nbsp;ABC Games
+            </a>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://yum-yum-games-go.snatch-a-bite.com/">
+              <img src="./images/tmm.png" width="16" height="16" />&nbsp;The Modern Method
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://skool.world">
+              <img src="./images/skool.png" width="16" height="16" />&nbsp;Skool
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://oddisbest.dev">
+              <img src="./images/og.png" width="16" height="16" />&nbsp;Odd Games
+            </a>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://bidoofery.github.io">
+              <img src="./images/bidoofery.png" width="16" height="16" />&nbsp;Bidoofery
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://theooofficial.github.io/myRETROGAMES">
+              <img src="./images/rg.png" width="16" height="16" />&nbsp;Retro Games
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://cpsgames.herokuapp.com">
+              <img src="./images/shs.png" width="16" height="16" />&nbsp;SHS Games
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
-
-    <!-- If you want to keep your old list, you can paste it below this line -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script>
-      // (Optional) fake live counter tick
+      // little fun counter tick
       (function(){
-        var el = document.getElementById('connection-counter');
-        if(!el) return;
-        var base = parseInt(el.textContent, 10) || 1000;
-        setInterval(function(){
-          base += Math.floor(Math.random()*3); // +0..2
-          el.textContent = base.toString();
-        }, 2000);
+        var el=document.getElementById('connection-counter'); if(!el) return;
+        var n=parseInt(el.textContent,10)||1000;
+        setInterval(function(){ n += Math.floor(Math.random()*3); el.textContent = n; }, 2000);
       })();
     </script>
   </body>
